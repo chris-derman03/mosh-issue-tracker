@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import { TextArea, TextField, Button, Callout, Text } from "@radix-ui/themes";
+import { TextArea, TextField, Button, Spinner } from "@radix-ui/themes";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { BiCommentError } from "react-icons/bi";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchemas";
 import FormFieldError from "@/app/components/FormFieldError";
+import FormError from "@/app/components/FormError";
 
 type IssueFormInput = z.infer<typeof createIssueSchema>;
 
@@ -22,26 +22,22 @@ const IssueForm = () => {
     });
     const router = useRouter();
     const [error, setError] = useState("");
+    const [isSubmitting, setSubmitting] = useState(false);
 
     const onSubmit: SubmitHandler<IssueFormInput> = async (data) => {
         try {
+            setSubmitting(true);
             await axios.post("/api/issues", data);
             router.push("/issues");
         } catch (error) {
+            setSubmitting(false);
             setError("An unexpected error occured.");
         }
     };
 
     return (
         <div className="issueFormContainer w-full">
-            {error && (
-                <Callout.Root color="violet" className="mb-5">
-                    <Callout.Icon>
-                        <BiCommentError />
-                    </Callout.Icon>
-                    <Callout.Text>{error}</Callout.Text>
-                </Callout.Root>
-            )}
+            {error && <FormError message={error} />}
             <form
                 className="flex flex-col gap-5"
                 onSubmit={handleSubmit(onSubmit)}
@@ -64,7 +60,10 @@ const IssueForm = () => {
                     <FormFieldError message={errors.description?.message} />
                 </div>
 
-                <Button className="customizedRadix">Submit New Issue</Button>
+                <Button className="customizedRadix" disabled={isSubmitting}>
+                    {isSubmitting && <Spinner loading />}
+                    Submit New Issue
+                </Button>
             </form>
         </div>
     );
