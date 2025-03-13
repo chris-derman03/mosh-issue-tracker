@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Theme, ThemePanel } from "@radix-ui/themes";
 import NavBar from "./NavBar";
+import { ThemeProvider } from "next-themes";
 
 const globalFont = localFont({
     src: "../public/fonts/ModernTypewriter-zrOYw.ttf",
@@ -23,14 +24,18 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <Theme
-                    className={`${globalFont.className} antialiased`}
-                    accentColor="tomato"
-                    radius="large"
-                >
-                    <NavBar />
-                    <main className="p-5 flex justify-center">{children}</main>
-                </Theme>
+                <ThemeProvider attribute={"class"}>
+                    <Theme
+                        className={`${globalFont.className} antialiased`}
+                        accentColor="tomato"
+                        radius="large"
+                    >
+                        <NavBar />
+                        <main className="p-5 flex justify-center">
+                            {children}
+                        </main>
+                    </Theme>
+                </ThemeProvider>
             </body>
         </html>
     );

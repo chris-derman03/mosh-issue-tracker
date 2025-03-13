@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import logoImage from "@/public/images/logo.webp";
+import { ThemeChanger } from "./components/ThemeChanger";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 
@@ -20,6 +21,8 @@ const NavBar = () => {
             <Link href="/">
                 <Image src={logoImage} alt="Issue Tracker" width={35} />
             </Link>
+            {/* 
+            <NavBarRoutes /> */}
 
             <ul className="flex space-x-6">
                 {links.map((link, index) => (
@@ -39,6 +42,10 @@ const NavBar = () => {
                     </li>
                 ))}
             </ul>
+
+            {/* <div className="flex ml-auto">
+                <ThemeChanger />
+            </div> */}
         </nav>
     );
 };
