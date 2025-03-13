@@ -15,7 +15,7 @@ const NavBar = () => {
     ];
 
     return (
-        <nav className="flex space-x-6 border-b px-5 h-14 items-center">
+        <nav className="flex space-x-6 border-b px-5 h-14 items-center mb-5">
             <Link href="/">
                 <Image src={logoImage} alt="Issue Tracker" width={35} />
             </Link>
