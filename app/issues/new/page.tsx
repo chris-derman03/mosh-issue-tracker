@@ -1,14 +1,8 @@
 import React from "react";
-import { TextArea, TextField, Button } from "@radix-ui/themes";
+import IssueForm from "./IssueForm";
 
 const NewIssuePage = () => {
-    return (
-        <div className="w-3/4 flex flex-col gap-5">
-            <TextField.Root placeholder="Title" className="customizedRadix" />
-            <TextArea placeholder="Description" className="customizedRadix" />
-            <Button className="customizedRadix">Submit New Issue</Button>
-        </div>
-    );
+    return <IssueForm />;
 };
 
 export default NewIssuePage;
