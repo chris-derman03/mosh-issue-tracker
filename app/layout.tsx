@@ -1,6 +1,8 @@
+import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
 
 const globalFont = localFont({
@@ -20,9 +22,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${globalFont.className} antialiased`}>
-                <NavBar />
-                <main>{children}</main>
+            <body>
+                <Theme className={`${globalFont.className} antialiased`}>
+                    <NavBar />
+                    <main>{children}</main>
+                </Theme>
             </body>
         </html>
     );
