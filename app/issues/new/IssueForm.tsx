@@ -55,7 +55,7 @@ const IssueForm = () => {
                     <TextArea
                         placeholder="Description"
                         {...register("description")}
-                        className="customizedRadix"
+                        className="customizedRadix h-30"
                     />
                     <FormFieldError message={errors.description?.message} />
                 </div>

@@ -1,13 +1,10 @@
 import React from "react";
-import { Button } from "@radix-ui/themes";
-import Link from "next/link";
+import RouteButton from "../components/RouteButton";
 
 const IssuesPage = () => {
     return (
         <div>
-            <Button>
-                <Link href="/issues/new">New Issue</Link>
-            </Button>
+            <RouteButton text={"New Issue"} route={"/issues/new"} />
         </div>
     );
 };
