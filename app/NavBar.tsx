@@ -8,6 +8,7 @@ import classNames from "classnames";
 
 const NavBar = () => {
     const currentPath = usePathname();
+    const currentLevel1Path = "/" + currentPath.split("/")[1];
 
     const links = [
         { label: "Dashboard", href: "/" },
@@ -26,8 +27,10 @@ const NavBar = () => {
                         <Link
                             href={link.href}
                             className={classNames({
-                                "text-zinc-900": link.href === currentPath,
-                                "text-zinc-500": link.href !== currentPath,
+                                "text-zinc-900":
+                                    link.href === currentLevel1Path,
+                                "text-zinc-500":
+                                    link.href !== currentLevel1Path,
                                 "hover:text-zinc-800 transition-colors": true,
                             })}
                         >

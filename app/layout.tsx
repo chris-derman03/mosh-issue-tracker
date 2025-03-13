@@ -2,7 +2,7 @@ import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Theme } from "@radix-ui/themes";
+import { Theme, ThemePanel } from "@radix-ui/themes";
 import NavBar from "./NavBar";
 
 const globalFont = localFont({
@@ -23,9 +23,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
-                <Theme className={`${globalFont.className} antialiased`}>
+                <Theme
+                    className={`${globalFont.className} antialiased`}
+                    accentColor="tomato"
+                    radius="large"
+                >
                     <NavBar />
-                    <main className="p-5">{children}</main>
+                    <main className="p-5 flex justify-center">{children}</main>
                 </Theme>
             </body>
         </html>
