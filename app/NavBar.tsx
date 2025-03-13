@@ -1,9 +1,14 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import logoImage from "@/public/images/logo.webp";
+import { usePathname } from "next/navigation";
+import classNames from "classnames";
 
 const NavBar = () => {
+    const currentPath = usePathname();
+
     const links = [
         { label: "Dashboard", href: "/" },
         { label: "Issues", href: "/issues" },
@@ -20,7 +25,11 @@ const NavBar = () => {
                     <li key={"navBarLink_" + index}>
                         <Link
                             href={link.href}
-                            className="text-zinc-500 hover:text-zinc-800 transition-colors"
+                            className={classNames({
+                                "text-zinc-900": link.href === currentPath,
+                                "text-zinc-500": link.href !== currentPath,
+                                "hover:text-zinc-800 transition-colors": true,
+                            })}
                         >
                             {link.label}
                         </Link>
