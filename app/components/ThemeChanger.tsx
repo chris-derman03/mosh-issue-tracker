@@ -11,9 +11,7 @@ export const ThemeChanger = () => {
         setMounted(true);
     }, []);
 
-    if (!mounted) {
-        return null;
-    }
+    if (!mounted) return null;
 
     return (
         <button

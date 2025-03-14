@@ -1,6 +1,57 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-.customizedRadix {
+.THEMED {
   font-family: var(--global-font);
+  font-size: 17px;
+  color: theme("colors.slate.500");
+} .dark .THEMED {
+  color: theme("colors.slate.200");
+}
+
+.THEMED-bg {
+  background-color: white;
+} .dark .THEMED-bg {
+  background-color: theme("colors.slate.900");
+}
+
+.THEMED-button {
+  background-color: theme("colors.orange.600");
+  transition: background-color 0.2s ease-in-out;
+  color: white;
+} .THEMED-button:hover {
+  background-color: theme("colors.orange.700");
+} .THEMED-button:disabled {
+  transition: none;
+  background-color: theme("colors.slate.600");
+}
+
+.THEMED-textArea {
+  outline-color: theme("colors.orange.600");
+}
+
+.THEMED-text1 {
+
+}
+
+.THEMED-text2 {
+
+}
+
+/* USE CASES: Issues table text */
+.THEMED-text3 {
+  font-size: 14px;
+}
+
+/* USE CASES: Form field error text */
+.THEMED-text4 {
+  color: theme("colors.indigo.800");
+  font-size: 12px;
+} .dark .THEMED-text4 {
+  color: theme("colors.violet.400");
+  font-size: 12px;
+}
+
+.THEMED-text-sm {
+  font-size: 14px;
 }

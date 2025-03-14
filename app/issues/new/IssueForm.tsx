@@ -46,7 +46,7 @@ const IssueForm = () => {
                     <TextField.Root
                         placeholder="Title"
                         {...register("title")}
-                        className="customizedRadix"
+                        className="THEMED THEMED-textArea"
                     />
                     <FormFieldError message={errors.title?.message} />
                 </div>
@@ -55,12 +55,15 @@ const IssueForm = () => {
                     <TextArea
                         placeholder="Description"
                         {...register("description")}
-                        className="customizedRadix h-30"
+                        className="THEMED THEMED-textArea h-30"
                     />
                     <FormFieldError message={errors.description?.message} />
                 </div>
 
-                <Button className="customizedRadix" disabled={isSubmitting}>
+                <Button
+                    className="THEMED THEMED-button"
+                    disabled={isSubmitting}
+                >
                     {isSubmitting && <Spinner loading />}
                     Submit New Issue
                 </Button>

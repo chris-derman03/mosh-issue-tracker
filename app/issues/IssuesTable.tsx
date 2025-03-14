@@ -9,18 +9,28 @@ const IssuesTable = async () => {
         <Table.Root className="w-full" variant="surface">
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell>Issue</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell>Created</Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="THEMED">
+                        Issue
+                    </Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="THEMED">
+                        Status
+                    </Table.ColumnHeaderCell>
+                    <Table.ColumnHeaderCell className="THEMED">
+                        Created
+                    </Table.ColumnHeaderCell>
                 </Table.Row>
             </Table.Header>
 
             <Table.Body>
                 {issues.map((issue, index) => (
                     <Table.Row key={"Issue_Row_" + index}>
-                        <Table.RowHeaderCell>{issue.title}</Table.RowHeaderCell>
-                        <Table.Cell>{issue.status}</Table.Cell>
-                        <Table.Cell>
+                        <Table.RowHeaderCell className="THEMED THEMED-text3">
+                            {issue.title}
+                        </Table.RowHeaderCell>
+                        <Table.Cell className="THEMED THEMED-text3">
+                            {issue.status}
+                        </Table.Cell>
+                        <Table.Cell className="THEMED THEMED-text3">
                             {issue.createdAt.toDateString()}
                         </Table.Cell>
                     </Table.Row>

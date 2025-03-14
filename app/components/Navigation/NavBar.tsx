@@ -1,9 +1,7 @@
-import Link from "next/link";
 import React from "react";
-import Image from "next/image";
-import logoImage from "@/public/images/logo.webp";
-import { ThemeChanger } from "../ThemeChanger";
+import NavLogo from "./NavLogo";
 import NavBarRoutes from "./NavBarRoutes";
+import { ThemeChanger } from "../ThemeChanger";
 
 const NavBar = () => {
     const routes = [
@@ -12,10 +10,8 @@ const NavBar = () => {
     ];
 
     return (
-        <nav className="flex space-x-6 border-b px-5 h-14 items-center mb-5">
-            <Link href="/">
-                <Image src={logoImage} alt="Issue Tracker" width={35} />
-            </Link>
+        <nav className="flex space-x-6 border-b px-5 h-14 items-center mb-5 THEMED THEMED-bg">
+            <NavLogo />
 
             <NavBarRoutes routes={routes} />
 

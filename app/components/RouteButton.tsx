@@ -12,9 +12,10 @@ interface Props {
     text: string;
     route: string;
     returnIcon?: boolean;
+    className?: string;
 }
 
-const RouteButton = ({ text, route, returnIcon = false }: Props) => {
+const RouteButton = ({ text, route, returnIcon = false, className }: Props) => {
     const router = useRouter();
     const [isClicked, setClicked] = useState(false);
 
@@ -25,6 +26,7 @@ const RouteButton = ({ text, route, returnIcon = false }: Props) => {
                 setClicked(true);
                 router.push(route);
             }}
+            className={"THEMED THEMED-button " + className}
         >
             {returnIcon && <IoMdReturnLeft size={18} />}
             {text}

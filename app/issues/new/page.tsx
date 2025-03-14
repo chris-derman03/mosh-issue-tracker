@@ -4,12 +4,17 @@ import RouteButton from "@/app/components/RouteButton";
 
 const NewIssuePage = () => {
     return (
-        <div className="w-full flex flex-col">
+        <main className="w-8/10 flex flex-col">
             <div className="mb-15">
-                <RouteButton text={"Issues"} route={"/issues"} returnIcon />
+                <RouteButton
+                    text={"Issues"}
+                    route={"/issues"}
+                    returnIcon
+                    className="THEMED-text-sm"
+                />
             </div>
             <IssueForm />
-        </div>
+        </main>
     );
 };
 

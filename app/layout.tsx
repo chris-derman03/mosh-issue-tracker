@@ -26,8 +26,7 @@ export default function RootLayout({
             <body>
                 <ThemeProvider attribute={"class"}>
                     <Theme
-                        className={`${globalFont.className} antialiased`}
-                        accentColor="tomato"
+                        className={`${globalFont.className} antialiased THEME THEMED-bg`}
                         radius="large"
                     >
                         <NavBar />

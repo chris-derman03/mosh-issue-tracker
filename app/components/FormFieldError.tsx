@@ -1,5 +1,5 @@
 import React from "react";
-import { ProgressProps, Text } from "@radix-ui/themes";
+import { Text } from "@radix-ui/themes";
 
 interface Props {
     message: string | undefined;
@@ -8,11 +8,7 @@ interface Props {
 const FormFieldError = ({ message }: Props) => {
     if (!message) return null;
 
-    return (
-        <Text color="violet" size="1">
-            {message}
-        </Text>
-    );
+    return <Text className="THEMED THEMED-text4">{message}</Text>;
 };
 
 export default FormFieldError;
