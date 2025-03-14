@@ -30,18 +30,10 @@ const NavBarRoutes = ({ routes }: Props) => {
                     <Link
                         href={route.href}
                         className={classNames({
-                            "text-zinc-900":
-                                route.href === currentLevel1Path &&
-                                theme === "light",
-                            "text-zinc-500":
-                                route.href !== currentLevel1Path &&
-                                theme === "light",
-                            "text-zinc-600":
-                                route.href === currentLevel1Path &&
-                                theme === "dark",
-                            " text-zinc-100":
-                                route.href !== currentLevel1Path &&
-                                theme === "dark",
+                            "text-zinc-900 dark:text-zinc-600":
+                                route.href === currentLevel1Path,
+                            "text-zinc-500 dark:text-zinc-100":
+                                route.href !== currentLevel1Path,
                             "hover:text-zinc-800 transition-colors": true,
                         })}
                     >
