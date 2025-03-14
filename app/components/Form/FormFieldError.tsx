@@ -6,9 +6,13 @@ interface Props {
 }
 
 const FormFieldError = ({ message }: Props) => {
-    if (!message) return null;
-
-    return <Text className="THEMED THEMED-text4">{message}</Text>;
+    return (
+        <div className="h-10 w-full">
+            {message ? (
+                <Text className="THEMED THEMED-text4">{message}</Text>
+            ) : null}
+        </div>
+    );
 };
 
 export default FormFieldError;

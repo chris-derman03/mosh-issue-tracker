@@ -8,9 +8,14 @@ const routes = [
     { label: "Issues", href: "/issues" },
 ];
 
-const NavBar = () => {
+const NavBar = ({ className }: { className: string }) => {
     return (
-        <nav className="flex space-x-6 border-b px-5 h-14 items-center mb-5 THEMED THEMED-bg">
+        <nav
+            className={
+                "flex space-x-6 border-b px-5 items-center THEMED THEMED-bg " +
+                className
+            }
+        >
             <NavLogo />
 
             <NavBarRoutes routes={routes} />

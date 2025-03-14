@@ -39,14 +39,16 @@ const IssueForm = () => {
         <div className="issueFormContainer w-full">
             {error && <FormError message={error} />}
             <form
-                className="flex flex-col gap-5"
+                className="flex flex-col gap-2"
                 onSubmit={handleSubmit(onSubmit)}
             >
+                <p className="THEMED THEMED-text1 mb-5">New Issue Form</p>
                 <div className="formFieldContaineer">
                     <TextField.Root
                         placeholder="Title"
                         {...register("title")}
                         className="THEMED THEMED-textArea"
+                        size="3"
                     />
                     <FormFieldError message={errors.title?.message} />
                 </div>
@@ -55,7 +57,7 @@ const IssueForm = () => {
                     <TextArea
                         placeholder="Description"
                         {...register("description")}
-                        className="THEMED THEMED-textArea h-30"
+                        className="THEMED THEMED-textArea h-70"
                     />
                     <FormFieldError message={errors.description?.message} />
                 </div>
@@ -65,7 +67,7 @@ const IssueForm = () => {
                     disabled={isSubmitting}
                 >
                     {isSubmitting && <Spinner loading />}
-                    Submit New Issue
+                    Submit
                 </Button>
             </form>
         </div>

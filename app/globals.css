@@ -4,7 +4,7 @@
 .THEMED {
   font-family: var(--global-font);
   font-size: 17px;
-  color: theme("colors.slate.500");
+  color: theme("colors.slate.600");
 } .dark .THEMED {
   color: theme("colors.slate.200");
 }
@@ -30,12 +30,13 @@
   outline-color: theme("colors.orange.600");
 }
 
+/* USE CASES: Page Title Font */
 .THEMED-text1 {
-
+  font-size: 42px;
 }
 
 .THEMED-text2 {
-
+  
 }
 
 /* USE CASES: Issues table text */

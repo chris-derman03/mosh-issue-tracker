@@ -23,14 +23,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body>
+            <body className="h-screen w-screen flex flex-col">
                 <ThemeProvider attribute={"class"}>
                     <Theme
                         className={`${globalFont.className} antialiased THEME THEMED-bg`}
                         radius="large"
                     >
-                        <NavBar />
-                        <main className="p-5 flex justify-center">
+                        <NavBar className="h-1/18" />
+                        <main className="h-17/18 px-5 flex justify-center">
                             {children}
                         </main>
                     </Theme>
