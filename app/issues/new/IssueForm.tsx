@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchemas";
-import FormFieldError from "@/app/components/FormFieldError";
-import FormError from "@/app/components/FormError";
+import FormFieldError from "@/app/components/Form/FormFieldError";
+import FormError from "@/app/components/Form/FormError";
 
 type IssueFormInput = z.infer<typeof createIssueSchema>;
 
