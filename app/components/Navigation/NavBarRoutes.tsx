@@ -1,44 +1,51 @@
 "use client";
-import React from "react";
-// import { useTheme } from "next-themes";
+
+import React, { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import Link from "next/link";
 
-const NavBarRoutes = () => {
-    // const { theme, setTheme } = useTheme();
-    const theme = "dark";
+interface Props {
+    routes: { label: string; href: string }[];
+}
+
+const NavBarRoutes = ({ routes }: Props) => {
+    // Path, is mounted to the server?, and current theme
     const currentPath = usePathname();
     const currentLevel1Path = "/" + currentPath.split("/")[1];
+    const [mounted, setMounted] = useState(false);
+    const { theme } = useTheme();
 
-    const links = [
-        { label: "Dashboard", href: "/" },
-        { label: "Issues", href: "/issues" },
-    ];
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
 
     return (
         <ul className="flex space-x-6">
-            {links.map((link, index) => (
+            {routes.map((route, index) => (
                 <li key={"navBarLink_" + index}>
                     <Link
-                        href={link.href}
+                        href={route.href}
                         className={classNames({
                             "text-zinc-900":
-                                link.href === currentLevel1Path &&
+                                route.href === currentLevel1Path &&
                                 theme === "light",
                             "text-zinc-500":
-                                link.href !== currentLevel1Path &&
+                                route.href !== currentLevel1Path &&
                                 theme === "light",
                             "text-zinc-600":
-                                link.href === currentLevel1Path &&
+                                route.href === currentLevel1Path &&
                                 theme === "dark",
                             " text-zinc-100":
-                                link.href !== currentLevel1Path &&
+                                route.href !== currentLevel1Path &&
                                 theme === "dark",
                             "hover:text-zinc-800 transition-colors": true,
                         })}
                     >
-                        {link.label}
+                        {route.label}
                     </Link>
                 </li>
             ))}
