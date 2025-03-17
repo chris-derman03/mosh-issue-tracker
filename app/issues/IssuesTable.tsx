@@ -32,10 +32,10 @@ const IssuesTable = async () => {
                                 className="THEMED-text5"
                             >
                                 {issue.title}
-                                <div className="block md:hidden">
-                                    <StatusBadge status={issue.status} />
-                                </div>
                             </Link>
+                            <div className="block md:hidden">
+                                <StatusBadge status={issue.status} />
+                            </div>
                         </Table.RowHeaderCell>
                         <Table.Cell className="hidden md:table-cell THEMED THEMED-text3">
                             <StatusBadge status={issue.status} />
