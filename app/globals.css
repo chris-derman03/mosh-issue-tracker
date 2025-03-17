@@ -36,6 +36,10 @@
 } .THEMED-button-cancel:hover {
   background-color: theme("colors.slate.700") !important;
   color: theme("colors.slate.400") !important;
+} .THEMED-button-cancel:disabled {
+  transition: none !important;
+  background-color: theme("colors.slate.500") !important;
+  color: theme("colors.slate.400") !important;
 }
 
 .THEMED-textArea {
