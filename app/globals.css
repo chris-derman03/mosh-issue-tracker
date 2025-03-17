@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
 
 .THEMED {
   font-family: var(--global-font);
@@ -35,9 +34,9 @@
   font-size: 42px;
 }
 
-.THEMED-text2 {
+/* .THEMED-text2 {
   
-}
+} */
 
 /* USE CASES: Issues table text */
 .THEMED-text3 {
