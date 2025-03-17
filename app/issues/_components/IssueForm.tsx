@@ -33,7 +33,8 @@ const IssueForm = ({ title, issue }: Props) => {
     const onSubmit: SubmitHandler<IssueFormInput> = async (data) => {
         try {
             setSubmitting(true);
-            await axios.post("/api/issues", data);
+            if (issue) await axios.patch(`/api/issues/${issue.id}`, data);
+            else await axios.post("/api/issues", data);
             router.push("/issues");
         } catch (error) {
             setSubmitting(false);
@@ -75,7 +76,7 @@ const IssueForm = ({ title, issue }: Props) => {
                     disabled={isSubmitting}
                 >
                     {isSubmitting && <Spinner loading />}
-                    Submit
+                    {issue ? "Update" : "Submit"}
                 </Button>
             </form>
         </div>
