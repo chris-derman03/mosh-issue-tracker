@@ -14,7 +14,7 @@ const NavBarRoutes = ({ routes }: Props) => {
     const currentLevel1Path = "/" + currentPath.split("/")[1];
 
     return (
-        <ul className="flex space-x-6">
+        <ul className="flex">
             {routes.map((route, index) => (
                 <li key={"navBarLink_" + index}>
                     <Link
@@ -22,9 +22,7 @@ const NavBarRoutes = ({ routes }: Props) => {
                         className={classNames({
                             "font-bold underline":
                                 route.href === currentLevel1Path,
-                            "": route.href !== currentLevel1Path,
-                            "transition-colors": true,
-                            THEMED: true,
+                            "THEMED THEMED-text2": true,
                         })}
                     >
                         {route.label}

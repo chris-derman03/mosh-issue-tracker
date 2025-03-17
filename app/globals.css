@@ -18,6 +18,7 @@
   background-color: theme("colors.orange.600") !important;
   transition: background-color 0.2s ease-in-out !important;
   color: white !important;
+  cursor: pointer;
 } .THEMED-button:hover {
   background-color: theme("colors.orange.700") !important;
 } .THEMED-button:disabled {
@@ -51,9 +52,18 @@
   font-size: 42px;
 }
 
-/* .THEMED-text2 {
-  
-} */
+/* USE CASES: Nav Bar Links */
+.THEMED-text2 {
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 4px;
+} .THEMED-text2:hover {
+  color: theme("colors.slate.950");
+  background-color: rgba(144, 161, 185, 0.4);
+}
 
 /* USE CASES: Issues table text */
 .THEMED-text3 {
