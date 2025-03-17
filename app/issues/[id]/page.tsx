@@ -3,6 +3,7 @@ import { prisma } from "@/prisma/client";
 import { notFound } from "next/navigation";
 import StatusBadge from "@/app/components/StatusBadge";
 import RouteButton from "@/app/components/RouteButton";
+import DeleteIssueButton from "./DeleteIssueButton";
 
 const IssueDetailPage = async ({
     params,
@@ -33,13 +34,14 @@ const IssueDetailPage = async ({
                 <StatusBadge status={issue.status} />
             </div>
 
-            <div className="mb-5 w-full">
+            <div className="mb-5 w-full flex justify-between">
                 <RouteButton
-                    text="Edit"
+                    text=""
                     route={`/issues/${issue.id}/edit`}
                     editIcon
                     className="THEMED-text-md"
                 />
+                <DeleteIssueButton issueId={issue.id} />
             </div>
 
             <div className="w-full flex p-5 border-1 rounded-md">

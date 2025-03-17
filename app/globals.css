@@ -15,7 +15,7 @@
 }
 
 .THEMED-button {
-  background-color: rgb(234 88 12) !important;
+  background-color: theme("colors.orange.600") !important;
   transition: background-color 0.2s ease-in-out !important;
   color: white !important;
 } .THEMED-button:hover {
@@ -23,10 +23,23 @@
 } .THEMED-button:disabled {
   transition: none !important;
   background-color: theme("colors.slate.600") !important;
+} .dark .THEMED-button {
+  background-color: theme("colors.indigo.700") !important;
+} .dark .THEMED-button:hover {
+  background-color: theme("colors.indigo.900") !important;
+}
+
+.THEMED-button-cancel {
+  background-color: theme("colors.slate.400") !important;
+  color: theme("colors.slate.950") !important;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out !important;
+} .THEMED-button-cancel:hover {
+  background-color: theme("colors.slate.700") !important;
+  color: theme("colors.slate.400") !important;
 }
 
 .THEMED-textArea {
-  outline-color: theme("colors.orange.600") !important;
+  outline-color: theme("colors.indigo.700") !important;
 }
 
 /* USE CASES: Page Title Font */
@@ -45,20 +58,27 @@
 
 /* USE CASES: Form field error text */
 .THEMED-text4 {
-  color: theme("colors.indigo.800");
+  color: theme("colors.indigo.700");
   font-size: 12px;
 } .dark .THEMED-text4 {
-  color: theme("colors.violet.400");
-  font-size: 12px;
+  color: theme("colors.orange.400");
 }
 
-/* Links */
+/* USE CASES: Links */
 .THEMED-text5 {
   color: theme("colors.indigo.800");
 } .dark .THEMED-text5 {
-  color: theme("colors.indigo.400");
+  color: theme("colors.orange.600");
 } .THEMED-text5:hover {
-  text-decoration: underline;
+  text-decoration: 
+  underline;
+}
+
+/* USE CASES: Dialog Pop-up Title */
+.THEMED-text6 {
+
+} .dark .THEMED-text6 {
+  color: theme("colors.orange.600");
 }
 
 .THEMED-text-sm {
