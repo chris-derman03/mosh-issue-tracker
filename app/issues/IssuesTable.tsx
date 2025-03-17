@@ -27,7 +27,10 @@ const IssuesTable = async () => {
                 {issues.map((issue, index) => (
                     <Table.Row key={"Issue_Row_" + index}>
                         <Table.RowHeaderCell className="flex between justify-between THEMED THEMED-text3">
-                            <Link href={`/issues/${issue.id}`}>
+                            <Link
+                                href={`/issues/${issue.id}`}
+                                className="THEMED-text5"
+                            >
                                 {issue.title}
                                 <div className="block md:hidden">
                                     <StatusBadge status={issue.status} />

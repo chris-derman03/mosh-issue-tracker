@@ -53,6 +53,15 @@
   font-size: 12px;
 }
 
+/* Links */
+.THEMED-text5 {
+  color: theme("colors.indigo.800");
+} .dark .THEMED-text5 {
+  color: theme("colors.indigo.400");
+} .THEMED-text5:hover {
+  text-decoration: underline;
+}
+
 .THEMED-text-sm {
   font-size: 14px;
 }

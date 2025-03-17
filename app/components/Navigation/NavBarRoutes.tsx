@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import React from "react";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import Link from "next/link";
@@ -11,17 +10,8 @@ interface Props {
 }
 
 const NavBarRoutes = ({ routes }: Props) => {
-    // Path, is mounted to the server?, and current theme
     const currentPath = usePathname();
     const currentLevel1Path = "/" + currentPath.split("/")[1];
-    const [mounted, setMounted] = useState(false);
-    const { theme } = useTheme();
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) return null;
 
     return (
         <ul className="flex space-x-6">

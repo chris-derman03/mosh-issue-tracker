@@ -13,15 +13,22 @@ interface Props {
     route: string;
     returnIcon?: boolean;
     className?: string;
+    forceDisable?: boolean;
 }
 
-const RouteButton = ({ text, route, returnIcon = false, className }: Props) => {
+const RouteButton = ({
+    text,
+    route,
+    returnIcon = false,
+    className,
+    forceDisable = false,
+}: Props) => {
     const router = useRouter();
     const [isClicked, setClicked] = useState(false);
 
     return (
         <Button
-            disabled={isClicked}
+            disabled={isClicked || forceDisable}
             onClick={() => {
                 setClicked(true);
                 router.push(route);

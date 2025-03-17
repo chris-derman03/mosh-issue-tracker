@@ -1,8 +1,11 @@
 import React from "react";
 import IssueForm from "./IssueForm";
 import RouteButton from "@/app/components/RouteButton";
+import delay from "delay";
 
-const NewIssuePage = () => {
+const NewIssuePage = async () => {
+    await delay(2000);
+
     return (
         <div className="w-7/10 flex flex-col my-5 relative">
             <div className="absolute">

@@ -15,9 +15,7 @@ export const ThemeChanger = () => {
 
     return (
         <button
-            onClick={() => {
-                theme === "dark" ? setTheme("light") : setTheme("dark");
-            }}
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className={
                 "bg-opacity-2 p-1.5 rounded " +
                 (theme === "dark" ? "hover:bg-gray-600" : "hover:bg-gray-300")
