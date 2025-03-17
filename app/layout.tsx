@@ -5,6 +5,7 @@ import "./globals.css";
 import { Theme } from "@radix-ui/themes";
 import NavBar from "./components/Navigation/NavBar";
 import { ThemeProvider } from "next-themes";
+import AuthProvider from "./auth/Provider";
 
 const globalFont = localFont({
     src: "../public/fonts/ModernTypewriter-zrOYw.ttf",
@@ -24,17 +25,19 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className="h-screen w-screen flex flex-col">
-                <ThemeProvider attribute={"class"}>
-                    <Theme
-                        className={`${globalFont.className} antialiased THEME THEMED-bg`}
-                        radius="large"
-                    >
-                        <NavBar className="h-1/18" />
-                        <main className="h-17/18 px-5 flex justify-center">
-                            {children}
-                        </main>
-                    </Theme>
-                </ThemeProvider>
+                <AuthProvider>
+                    <ThemeProvider attribute={"class"}>
+                        <Theme
+                            className={`${globalFont.className} antialiased THEME THEMED-bg`}
+                            radius="large"
+                        >
+                            <NavBar className="h-1/18" />
+                            <main className="h-17/18 px-5 flex justify-center">
+                                {children}
+                            </main>
+                        </Theme>
+                    </ThemeProvider>
+                </AuthProvider>
             </body>
         </html>
     );
