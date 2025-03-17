@@ -17,7 +17,16 @@ const IssueDetailPage = async ({
     if (!issue) notFound();
 
     return (
-        <div className="w-8/10 flex flex-col items-center mt-20">
+        <div className="w-8/10 flex flex-col items-center my-5">
+            <div className="w-full mb-15">
+                <RouteButton
+                    text="Issues"
+                    route={`/issues`}
+                    returnIcon
+                    className="THEMED-text-sm"
+                />
+            </div>
+
             <div className="flex flex-col items-center mb-10">
                 <p className="THEMED THEMED-text1 mb-0">{issue.title}</p>
                 <p className="mb-1">{issue.createdAt.toDateString()}</p>

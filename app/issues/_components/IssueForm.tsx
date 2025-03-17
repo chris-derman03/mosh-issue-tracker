@@ -9,10 +9,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createIssueSchema } from "@/app/validationSchemas";
 import FormFieldError from "@/app/components/Form/FormFieldError";
 import FormError from "@/app/components/Form/FormError";
+import { Issue } from "@prisma/client";
 
 type IssueFormInput = z.infer<typeof createIssueSchema>;
 
-const IssueForm = () => {
+interface Props {
+    title: string;
+    issue?: Issue | null;
+}
+
+const IssueForm = ({ title, issue }: Props) => {
     const {
         register,
         handleSubmit,
@@ -42,10 +48,11 @@ const IssueForm = () => {
                 className="flex flex-col gap-2"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <p className="THEMED THEMED-text1 mb-5">New Issue Form</p>
+                <p className="THEMED THEMED-text1 mb-5">{title}</p>
                 <div className="formFieldContaineer">
                     <TextField.Root
                         placeholder="Title"
+                        defaultValue={issue?.title}
                         {...register("title")}
                         className="THEMED THEMED-textArea"
                         size="3"
@@ -56,6 +63,7 @@ const IssueForm = () => {
                 <div className="formFieldContaineer">
                     <TextArea
                         placeholder="Description"
+                        defaultValue={issue?.description}
                         {...register("description")}
                         className="THEMED THEMED-textArea h-70"
                     />
