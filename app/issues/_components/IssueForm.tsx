@@ -11,7 +11,7 @@ import FormFieldError from "@/app/components/Form/FormFieldError";
 import FormError from "@/app/components/Form/FormError";
 import { Issue } from "@prisma/client";
 
-type IssueFormInput = z.infer<typeof createIssueSchema>;
+type IssueFormInput = z.infer<typeof issueSchema>;
 
 interface Props {
     title: string;
