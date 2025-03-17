@@ -1,25 +1,28 @@
 "use client";
 import { useState } from "react";
-import { AlertDialog, Button } from "@radix-ui/themes";
+import { AlertDialog, Button, Spinner } from "@radix-ui/themes";
 import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
+    const [isDialog, setDialog] = useState(false);
+    const [isDeleting, setDeleting] = useState(false);
     const [isRootClicked, setRootClicked] = useState(false);
     const [isDialogClicked, setDialogClicked] = useState(false);
-    const router = useRouter();
     const [deletionError, setDeletionError] = useState(false);
+    const router = useRouter();
 
     return (
         <>
-            <AlertDialog.Root>
+            <AlertDialog.Root open={isDialog}>
                 <AlertDialog.Trigger>
                     <Button
                         disabled={isRootClicked}
                         onClick={() => {
                             setRootClicked(true);
                             setDialogClicked(false);
+                            setDialog(true);
                         }}
                         className="THEMED THEMED-button"
                     >
@@ -41,6 +44,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
                                 onClick={() => {
                                     setRootClicked(false);
                                     setDialogClicked(true);
+                                    setDialog(false);
                                 }}
                             >
                                 Cancel
@@ -54,6 +58,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
                                     setRootClicked(false);
                                     setDialogClicked(true);
                                     try {
+                                        setDeleting(true);
                                         await axios.delete(
                                             `/api/issues/${issueId}`
                                         );
@@ -62,10 +67,15 @@ const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
                                     } catch (error) {
                                         setDeletionError(true);
                                         setDialogClicked(false);
+                                        setDialog(false);
+                                        setDeleting(false);
                                     }
+                                    setDialog(false);
+                                    setDeleting(false);
                                 }}
                             >
-                                Delete
+                                {isDeleting && <Spinner loading />}
+                                {"Delete"}
                             </Button>
                         </AlertDialog.Action>
                     </div>

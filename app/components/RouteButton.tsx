@@ -41,7 +41,7 @@ const RouteButton = ({
             className={"THEMED THEMED-button " + className}
         >
             {returnIcon && <IoMdReturnLeft size={18} />}
-            {editIcon && <FaRegEdit size={18} className="mb-0.5" />}
+            {editIcon && <FaRegEdit size={18} className="-mr-0.5" />}
             {text}
         </Button>
     );
