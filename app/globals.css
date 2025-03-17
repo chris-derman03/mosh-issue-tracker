@@ -15,18 +15,18 @@
 }
 
 .THEMED-button {
-  background-color: theme("colors.orange.600");
-  transition: background-color 0.2s ease-in-out;
-  color: white;
+  background-color: rgb(234 88 12) !important;
+  transition: background-color 0.2s ease-in-out !important;
+  color: white !important;
 } .THEMED-button:hover {
-  background-color: theme("colors.orange.700");
+  background-color: theme("colors.orange.700") !important;
 } .THEMED-button:disabled {
-  transition: none;
-  background-color: theme("colors.slate.600");
+  transition: none !important;
+  background-color: theme("colors.slate.600") !important;
 }
 
 .THEMED-textArea {
-  outline-color: theme("colors.orange.600");
+  outline-color: theme("colors.orange.600") !important;
 }
 
 /* USE CASES: Page Title Font */
