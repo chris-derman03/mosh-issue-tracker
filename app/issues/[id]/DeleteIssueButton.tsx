@@ -2,17 +2,22 @@
 import { useState } from "react";
 import { AlertDialog, Button } from "@radix-ui/themes";
 import { FaRegTrashAlt } from "react-icons/fa";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
-    const [isClicked, setClicked] = useState(false);
+    const [isRootClicked, setRootClicked] = useState(false);
+    const [isDialogClicked, setDialogClicked] = useState(false);
+    const router = useRouter();
 
     return (
         <AlertDialog.Root>
             <AlertDialog.Trigger>
                 <Button
-                    disabled={isClicked}
+                    disabled={isRootClicked}
                     onClick={() => {
-                        setClicked(true);
+                        setRootClicked(true);
+                        setDialogClicked(false);
                     }}
                     className="THEMED THEMED-button"
                 >
@@ -30,8 +35,10 @@ const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
                     <AlertDialog.Cancel>
                         <Button
                             className="THEMED-button-cancel"
+                            disabled={isDialogClicked}
                             onClick={() => {
-                                setClicked(false);
+                                setRootClicked(false);
+                                setDialogClicked(true);
                             }}
                         >
                             Cancel
@@ -40,8 +47,13 @@ const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
                     <AlertDialog.Action>
                         <Button
                             className="THEMED-button"
-                            onClick={() => {
-                                setClicked(false);
+                            disabled={isDialogClicked}
+                            onClick={async () => {
+                                setRootClicked(false);
+                                setDialogClicked(true);
+                                await axios.delete(`/api/issues/${issueId}`);
+                                router.push("/issues");
+                                router.refresh();
                             }}
                         >
                             Delete
