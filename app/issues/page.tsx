@@ -5,11 +5,15 @@ import IssueStatusFilter from "./IssueStatusFilter";
 import { Issue, Status } from "@prisma/client";
 
 interface Params {
-    searchParams: Promise<{ status: Status; orderBy: keyof Issue }>;
+    searchParams: Promise<{
+        status: Status;
+        orderBy: keyof Issue;
+        page: string;
+    }>;
 }
 
 const IssuesPage = async ({ searchParams }: Params) => {
-    const { status, orderBy } = await searchParams;
+    const { status, orderBy, page } = await searchParams;
 
     return (
         <div className="w-full flex flex-col items-center">
@@ -20,7 +24,11 @@ const IssuesPage = async ({ searchParams }: Params) => {
                 <div>
                     <IssueStatusFilter />
                 </div>
-                <IssuesTable URLStatusFilter={status} URLSortOrder={orderBy} />
+                <IssuesTable
+                    URLstatusFilter={status}
+                    URLsortOrder={orderBy}
+                    URLpage={parseInt(page) || 1}
+                />
             </div>
         </div>
     );
