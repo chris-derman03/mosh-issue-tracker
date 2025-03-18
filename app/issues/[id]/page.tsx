@@ -6,6 +6,7 @@ import RouteButton from "@/app/components/RouteButton";
 import DeleteIssueButton from "./DeleteIssueButton";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
+import AssigneeSelect from "./AssigneeSelect";
 
 const IssueDetailPage = async ({
     params,
@@ -44,7 +45,10 @@ const IssueDetailPage = async ({
                     editIcon
                     className="THEMED-text-md"
                 />
-                {session && <DeleteIssueButton issueId={issue.id} />}
+                <div className="flex gap-4">
+                    <AssigneeSelect />
+                    {session && <DeleteIssueButton issueId={issue.id} />}
+                </div>
             </div>
 
             <div className="w-full flex p-5 border-1 rounded-md">
