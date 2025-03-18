@@ -1,6 +1,7 @@
 import React from "react";
 import RouteButton from "../components/RouteButton";
 import IssuesTable from "./IssuesTable";
+import IssueStatusFilter from "./IssueStatusFilter";
 
 const IssuesPage = () => {
     return (
@@ -8,7 +9,12 @@ const IssuesPage = () => {
             <div className="h-[100px] flex items-center">
                 <RouteButton text={"New Issue"} route={"/issues/new"} />
             </div>
-            <IssuesTable />
+            <div className="w-full flex flex-col gap-2">
+                <div>
+                    <IssueStatusFilter />
+                </div>
+                <IssuesTable />
+            </div>
         </div>
     );
 };
