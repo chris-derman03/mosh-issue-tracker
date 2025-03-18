@@ -45,7 +45,7 @@ const IssueDetailPage = async ({
                     editIcon
                     className="THEMED-text-md"
                 />
-                <div className="flex gap-4">
+                <div className="flex gap-4 items-center justify-center">
                     <AssigneeSelect />
                     {session && <DeleteIssueButton issueId={issue.id} />}
                 </div>
