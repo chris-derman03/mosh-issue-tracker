@@ -37,10 +37,18 @@ const IssuesTable = async ({ statusFilterBy, orderBy }: Params) => {
         ? statusFilterBy
         : undefined;
 
+    // Validate the sort order param
+    const prismaSortOrder = columns
+        .map((column) => column.value)
+        .includes(orderBy)
+        ? { [orderBy]: "asc" }
+        : undefined;
+
     const issues = await prisma.issue.findMany({
         where: {
             status: validatedStatusFilterBy,
         },
+        orderBy: prismaSortOrder,
     });
 
     return (
