@@ -2,14 +2,14 @@ import React from "react";
 import RouteButton from "../components/RouteButton";
 import IssuesTable from "./IssuesTable";
 import IssueStatusFilter from "./IssueStatusFilter";
-import { Status } from "@prisma/client";
+import { Issue, Status } from "@prisma/client";
 
 interface Params {
-    searchParams: Promise<{ status: Status }>;
+    searchParams: Promise<{ status: Status; orderBy: keyof Issue }>;
 }
 
 const IssuesPage = async ({ searchParams }: Params) => {
-    const { status } = await searchParams;
+    const { status, orderBy } = await searchParams;
 
     return (
         <div className="w-full flex flex-col items-center">
@@ -20,7 +20,7 @@ const IssuesPage = async ({ searchParams }: Params) => {
                 <div>
                     <IssueStatusFilter />
                 </div>
-                <IssuesTable statusFilterBy={status} />
+                <IssuesTable statusFilterBy={status} orderBy={orderBy} />
             </div>
         </div>
     );

@@ -3,15 +3,35 @@ import { prisma } from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
 import StatusBadge from "../components/StatusBadge";
 import Link from "next/link";
-import { Status } from "@prisma/client";
+import { Issue, Status } from "@prisma/client";
+
+import dynamic from "next/dynamic";
+const FaArrowUpLong = dynamic(() =>
+    import("react-icons/fa6").then((mod) => mod.FaArrowUpLong)
+);
+
+const columns: { label: string; value: keyof Issue; className?: string }[] = [
+    { label: "Issue", value: "title", className: "THEMED" },
+    {
+        label: "Status",
+        value: "status",
+        className: "hidden md:table-cell THEMED",
+    },
+    {
+        label: "Created",
+        value: "createdAt",
+        className: "hidden md:table-cell THEMED",
+    },
+];
 
 const statuses = Object.values(Status);
 
 interface Params {
     statusFilterBy: Status;
+    orderBy: keyof Issue;
 }
 
-const IssuesTable = async ({ statusFilterBy }: Params) => {
+const IssuesTable = async ({ statusFilterBy, orderBy }: Params) => {
     // Validate the status filter param
     const validatedStatusFilterBy = statuses.includes(statusFilterBy)
         ? statusFilterBy
@@ -27,15 +47,28 @@ const IssuesTable = async ({ statusFilterBy }: Params) => {
         <Table.Root className="w-full" variant="surface">
             <Table.Header>
                 <Table.Row>
-                    <Table.ColumnHeaderCell className="THEMED">
-                        Issue
-                    </Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell className="hidden md:table-cell THEMED">
-                        Status
-                    </Table.ColumnHeaderCell>
-                    <Table.ColumnHeaderCell className="hidden md:table-cell THEMED">
-                        Created
-                    </Table.ColumnHeaderCell>
+                    {columns.map((column) => (
+                        <Table.ColumnHeaderCell
+                            key={column.value}
+                            className={column.className}
+                        >
+                            <div className="flex gap-1 items-center w-[100px]">
+                                <Link
+                                    href={{
+                                        query: {
+                                            status: validatedStatusFilterBy,
+                                            orderBy: column.value,
+                                        },
+                                    }}
+                                >
+                                    {column.label}
+                                </Link>
+                                {column.value === orderBy && (
+                                    <FaArrowUpLong size={14} />
+                                )}
+                            </div>
+                        </Table.ColumnHeaderCell>
+                    ))}
                 </Table.Row>
             </Table.Header>
 
