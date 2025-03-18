@@ -33,8 +33,8 @@ export default function RootLayout({
                                 className={`${globalFont.className} antialiased THEME THEMED-bg`}
                                 radius="large"
                             >
-                                <NavBar className="h-1/18" />
-                                <main className="h-17/18 px-5 flex justify-center">
+                                <NavBar className="h-[70px]" />
+                                <main className="px-5 flex justify-center">
                                     {children}
                                 </main>
                             </Theme>
