@@ -21,9 +21,9 @@ const NavBar = ({ className }: { className: string }) => {
 
             <NavBarRoutes routes={routes} />
 
-            <div className="flex ml-auto items-center justify-center gap-3">
+            <div className="flex ml-auto items-center justify-center gap-0">
                 <ThemeChanger />
-                <div className="w-[30px] flex items-center justify-center">
+                <div className="w-[70px] flex items-center justify-center">
                     <UserProfile />
                 </div>
             </div>

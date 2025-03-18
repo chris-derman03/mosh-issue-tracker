@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import {prisma} from "@/prisma/client";
 import { issueSchema } from "../../validationSchemas";
+import authOptions from "@/app/auth/authOptions";
+import { getServerSession } from "next-auth";
 
 // API CALLS to /api/issues
 
 export async function POST(request: NextRequest) {
+    const session = await getServerSession(authOptions);
+    if (!session)
+        return NextResponse.json({error: "You are not an authenticated user."}, {status: 401});
+
     const body = await request.json();
 
     const zodValidation = issueSchema.safeParse(body);

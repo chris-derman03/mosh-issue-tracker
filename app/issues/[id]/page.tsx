@@ -4,12 +4,15 @@ import { notFound } from "next/navigation";
 import StatusBadge from "@/app/components/StatusBadge";
 import RouteButton from "@/app/components/RouteButton";
 import DeleteIssueButton from "./DeleteIssueButton";
+import { getServerSession } from "next-auth";
+import authOptions from "@/app/auth/authOptions";
 
 const IssueDetailPage = async ({
     params,
 }: {
     params: Promise<{ id: string }>;
 }) => {
+    const session = await getServerSession(authOptions);
     const { id } = await params;
     const issue = await prisma.issue.findUnique({
         where: { id: id },
@@ -41,7 +44,7 @@ const IssueDetailPage = async ({
                     editIcon
                     className="THEMED-text-md"
                 />
-                <DeleteIssueButton issueId={issue.id} />
+                {session && <DeleteIssueButton issueId={issue.id} />}
             </div>
 
             <div className="w-full flex p-5 border-1 rounded-md">
