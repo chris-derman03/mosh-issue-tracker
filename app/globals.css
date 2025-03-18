@@ -35,8 +35,7 @@
   color: theme("colors.slate.950") !important;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out !important;
 } .THEMED-button-cancel:hover {
-  background-color: theme("colors.slate.700") !important;
-  color: theme("colors.slate.400") !important;
+  background-color: theme("colors.slate.500") !important;
 } .THEMED-button-cancel:disabled {
   transition: none !important;
   background-color: theme("colors.slate.500") !important;

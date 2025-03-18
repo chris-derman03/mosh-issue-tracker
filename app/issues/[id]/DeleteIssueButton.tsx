@@ -4,6 +4,7 @@ import { AlertDialog, Button, Spinner } from "@radix-ui/themes";
 import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { FaCircleExclamation } from "react-icons/fa6";
 
 const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
     const [isDialog, setDialog] = useState(false);
@@ -30,8 +31,9 @@ const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
                     </Button>
                 </AlertDialog.Trigger>
                 <AlertDialog.Content>
-                    <AlertDialog.Title className="THEMED-text6">
-                        Confirm Deletion
+                    <AlertDialog.Title className="THEMED-text6 flex items-center">
+                        <FaCircleExclamation className="mr-2" />
+                        {"Confirm Deletion"}
                     </AlertDialog.Title>
                     <AlertDialog.Description>
                         Do you really want to permanently delete this issue?
