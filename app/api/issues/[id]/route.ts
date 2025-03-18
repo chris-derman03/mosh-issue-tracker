@@ -10,9 +10,9 @@ export async function PATCH(
     {params}: {params: Promise<{id: string}>}) 
 {
     // Only authenticated users can make patches
-    // const session = await getServerSession(authOptions);
-    // if (!session)
-    //     return NextResponse.json({error: "You are not an authenticated user."}, {status: 401});
+    const session = await getServerSession(authOptions);
+    if (!session)
+        return NextResponse.json({error: "You are not an authenticated user."}, {status: 401});
 
     const patchingIssueId = await params.then(res => res.id);
 
