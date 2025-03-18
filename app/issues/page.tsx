@@ -20,7 +20,7 @@ const IssuesPage = async ({ searchParams }: Params) => {
                 <div>
                     <IssueStatusFilter />
                 </div>
-                <IssuesTable statusFilterBy={status} orderBy={orderBy} />
+                <IssuesTable URLStatusFilter={status} URLSortOrder={orderBy} />
             </div>
         </div>
     );

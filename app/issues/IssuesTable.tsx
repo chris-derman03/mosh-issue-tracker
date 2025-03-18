@@ -10,38 +10,50 @@ const FaArrowUpLong = dynamic(() =>
     import("react-icons/fa6").then((mod) => mod.FaArrowUpLong)
 );
 
-const columns: { label: string; value: keyof Issue; className?: string }[] = [
-    { label: "Issue", value: "title", className: "THEMED" },
+const columns: {
+    label: string;
+    value: keyof Issue;
+    className?: string;
+    sortIcon: string;
+}[] = [
+    {
+        label: "Issue",
+        value: "title",
+        className: "THEMED THEMED-text-md",
+        sortIcon: "",
+    },
     {
         label: "Status",
         value: "status",
-        className: "hidden md:table-cell THEMED",
+        className: "hidden md:table-cell THEMED THEMED-text-md",
+        sortIcon: "",
     },
     {
         label: "Created",
         value: "createdAt",
-        className: "hidden md:table-cell THEMED",
+        className: "hidden md:table-cell THEMED THEMED-text-md",
+        sortIcon: ":Oldest",
     },
 ];
 
 const statuses = Object.values(Status);
 
 interface Params {
-    statusFilterBy: Status;
-    orderBy: keyof Issue;
+    URLStatusFilter: Status;
+    URLSortOrder: keyof Issue;
 }
 
-const IssuesTable = async ({ statusFilterBy, orderBy }: Params) => {
+const IssuesTable = async ({ URLStatusFilter, URLSortOrder }: Params) => {
     // Validate the status filter param
-    const validatedStatusFilterBy = statuses.includes(statusFilterBy)
-        ? statusFilterBy
+    const validatedStatusFilterBy = statuses.includes(URLStatusFilter)
+        ? URLStatusFilter
         : undefined;
 
     // Validate the sort order param
     const prismaSortOrder = columns
         .map((column) => column.value)
-        .includes(orderBy)
-        ? { [orderBy]: "asc" }
+        .includes(URLSortOrder)
+        ? { [URLSortOrder]: "asc" }
         : undefined;
 
     const issues = await prisma.issue.findMany({
@@ -71,8 +83,12 @@ const IssuesTable = async ({ statusFilterBy, orderBy }: Params) => {
                                 >
                                     {column.label}
                                 </Link>
-                                {column.value === orderBy && (
-                                    <FaArrowUpLong size={14} />
+                                {column.value === URLSortOrder && (
+                                    <span className="THEMED-text-sm">
+                                        {column.sortIcon || (
+                                            <FaArrowUpLong size={14} />
+                                        )}
+                                    </span>
                                 )}
                             </div>
                         </Table.ColumnHeaderCell>
