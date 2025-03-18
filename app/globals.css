@@ -22,12 +22,17 @@
 } .THEMED-button:hover {
   background-color: theme("colors.orange.700") !important;
 } .THEMED-button:disabled {
+  cursor: not-allowed;
   transition: none !important;
-  background-color: theme("colors.slate.600") !important;
+  color: theme("colors.slate.500") !important;
+  background-color: theme("colors.slate.400") !important;
 } .dark .THEMED-button {
   background-color: theme("colors.indigo.700") !important;
 } .dark .THEMED-button:hover {
   background-color: theme("colors.indigo.900") !important;
+} .dark .THEMED-button:disabled {
+  background-color: theme("colors.slate.600") !important;
+  color: theme("colors.slate.800") !important;
 }
 
 .THEMED-button-cancel {

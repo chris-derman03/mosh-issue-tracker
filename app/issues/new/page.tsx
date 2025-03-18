@@ -4,7 +4,7 @@ import RouteButton from "@/app/components/RouteButton";
 
 const NewIssuePage = async () => {
     return (
-        <div className="w-9/10 flex flex-col my-5 relative">
+        <div className="w-8/10 h-[800px] flex flex-col my-5 relative">
             <div className="absolute">
                 <RouteButton
                     text={"Issues"}
