@@ -6,36 +6,28 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const AssigneeSelect = ({ issue }: { issue: Issue }) => {
-    // Query users
-    const {
-        data: users,
-        error,
-        isLoading,
-    } = useQuery<User[]>({
-        queryKey: ["users"],
-        queryFn: () =>
-            axios.get("/api/users").then((response) => response.data),
-        staleTime: 60 * 1000, // 60s
-        retry: 3,
-    });
+    // Query Users
+    const { data: users, error, isLoading } = useUsers();
 
     if (isLoading) return <Spinner />;
-
     if (error) return null;
+
+    // API call to assign user to this issue.
+    const assignUser = (userId: string) => {
+        axios
+            .patch(`/api/issues/${issue.id}`, {
+                assignedToUserId: userId === "-1" ? null : userId,
+            })
+            .catch(() => {
+                toast.error("Could not assign user.");
+            });
+    };
 
     return (
         <>
             <Select.Root
                 defaultValue={issue.assignedToUserId || "-1"}
-                onValueChange={(userId) => {
-                    axios
-                        .patch(`/api/issues/${issue.id}`, {
-                            assignedToUserId: userId === "-1" ? null : userId,
-                        })
-                        .catch(() => {
-                            toast.error("Could not assign user.");
-                        });
-                }}
+                onValueChange={assignUser}
             >
                 <Select.Trigger placeholder="Assign..." />
                 <Select.Content>
@@ -57,5 +49,15 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
         </>
     );
 };
+
+// Custom hook to fetch users
+const useUsers = () =>
+    useQuery<User[]>({
+        queryKey: ["users"],
+        queryFn: () =>
+            axios.get("/api/users").then((response) => response.data),
+        staleTime: 12 * 60 * 3600 * 1000, // 12 Hours
+        retry: 3,
+    });
 
 export default AssigneeSelect;
