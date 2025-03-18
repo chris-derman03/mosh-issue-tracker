@@ -3,9 +3,25 @@ import { prisma } from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
 import StatusBadge from "../components/StatusBadge";
 import Link from "next/link";
+import { Status } from "@prisma/client";
 
-const IssuesTable = async () => {
-    const issues = await prisma.issue.findMany();
+const statuses = Object.values(Status);
+
+interface Params {
+    statusFilterBy: Status;
+}
+
+const IssuesTable = async ({ statusFilterBy }: Params) => {
+    // Validate the status filter param
+    const validatedStatusFilterBy = statuses.includes(statusFilterBy)
+        ? statusFilterBy
+        : undefined;
+
+    const issues = await prisma.issue.findMany({
+        where: {
+            status: validatedStatusFilterBy,
+        },
+    });
 
     return (
         <Table.Root className="w-full" variant="surface">
