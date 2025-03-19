@@ -1,7 +1,7 @@
 import React from "react";
 import RouteButton from "../components/RouteButton";
-import IssuesTable from "./IssuesTable";
-import IssueStatusFilter from "./IssueStatusFilter";
+import IssuesTable from "./_components/IssuesTable";
+import IssueStatusFilter from "./_components/IssueStatusFilter";
 import { Issue, Status } from "@prisma/client";
 
 interface Params {

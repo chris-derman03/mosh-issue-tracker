@@ -26,4 +26,6 @@ const columns: {
     },
 ];
 
+export const columnVals =  columns.map((column) => column.value)
+
 export default columns;

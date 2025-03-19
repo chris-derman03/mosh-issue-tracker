@@ -17,6 +17,7 @@ const IssueStatusFilter = () => {
 
     return (
         <Select.Root
+            defaultValue={searchParams.get("status") || ""}
             onValueChange={(dropDownValue) => {
                 const params = new URLSearchParams();
                 if (dropDownValue && dropDownValue !== "-1")
