@@ -14,9 +14,9 @@ const LatestIssues = async () => {
     });
 
     return (
-        <Table.Root variant="surface">
+        <Table.Root variant="surface" className="mb-5">
             <Table.Body>
-                {latestIssues.map((issue, index) => (
+                {latestIssues.map((issue) => (
                     <Table.Row key={issue.id}>
                         <Table.Cell>
                             <div className="flex justify-between items-center gap-20">
