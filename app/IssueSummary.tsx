@@ -31,7 +31,9 @@ const IssueSummary = ({ open, inProgress, closed }: Params) => {
                         >
                             {container.label}
                         </Link>
-                        <p className="THEMED-text-md">{container.value}</p>
+                        <p className="THEMED-text7 THEMED-text-md">
+                            {container.value}
+                        </p>
                     </div>
                 </Card>
             ))}

@@ -99,6 +99,14 @@
   color: theme("colors.orange.600");
 }
 
+/* USE CASES: Dashboard Stats */
+.THEMED-text7 {
+  color: theme("colors.orange.600");
+  
+} .dark .THEMED-text7 {
+  color: theme("colors.indigo.400");
+}
+
 .THEMED-text-sm {
   font-size: 14px;
 }

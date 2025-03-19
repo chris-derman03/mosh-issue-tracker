@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className="h-screen w-screen flex flex-col">
+            <body className="w-screen flex flex-col">
                 <QueryClientProvider>
                     <AuthProvider>
                         <ThemeProvider attribute={"class"}>

@@ -14,7 +14,7 @@ const LatestIssues = async () => {
     });
 
     return (
-        <Table.Root variant="surface" className="mb-5">
+        <Table.Root variant="surface">
             <Table.Body>
                 {latestIssues.map((issue) => (
                     <Table.Row key={issue.id}>
