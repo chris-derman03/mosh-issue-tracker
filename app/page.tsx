@@ -1,20 +1,13 @@
-import Pagination from "./components/Pagination";
+import { Card } from "@radix-ui/themes";
+import LatestIssues from "./LatestIssues";
 
-interface Params {
-    searchParams: Promise<{ page: string }>;
-}
-
-export default async function Home({ searchParams }: Params) {
-    let { page } = await searchParams;
-
+export default async function Home() {
     return (
-        <div>
-            <h1 className="text-5xl">Hello World</h1>
-            <Pagination
-                itemCount={100}
-                pageSize={10}
-                currentPage={parseInt(page)}
-            />
+        <div className="w-full flex justify-center mt-20">
+            <Card className="THEMED">
+                <p className="THEMED THEMED-text1 mb-5">Latest Issues</p>
+                <LatestIssues />
+            </Card>
         </div>
     );
 }
