@@ -1,8 +1,9 @@
-import { Card, Grid } from "@radix-ui/themes";
+import { Grid } from "@radix-ui/themes";
 import LatestIssues from "./LatestIssues";
 import IssueSummary from "./IssueSummary";
 import { prisma } from "@/prisma/client";
 import IssueChart from "./IssueChart";
+import { Metadata } from "next";
 
 export default async function Home() {
     const open = await prisma.issue.count({ where: { status: "OPEN" } });
@@ -30,24 +31,10 @@ export default async function Home() {
                 <LatestIssues />
             </div>
         </Grid>
-
-        // <div className="w-full flex justify-center my-20">
-        //     <Card className="THEMED">
-        //         <div className="flex flex-col gap-7">
-        //             <p className="THEMED THEMED-text1">Latest Issues</p>
-        //             <LatestIssues />
-        //             <IssueSummary
-        //                 open={open}
-        //                 inProgress={inProgress}
-        //                 closed={closed}
-        //             />
-        //             <IssueChart
-        //                 open={open}
-        //                 inProgress={inProgress}
-        //                 closed={closed}
-        //             />
-        //         </div>
-        //     </Card>
-        // </div>
     );
 }
+
+export const metadata: Metadata = {
+    title: "Issue Tracker - Dashboard",
+    description: "View a summary of all issues.",
+};

@@ -3,6 +3,7 @@ import RouteButton from "../components/RouteButton";
 import IssuesTable from "./_components/IssuesTable";
 import IssueStatusFilter from "./_components/IssueStatusFilter";
 import { Issue, Status } from "@prisma/client";
+import { Metadata } from "next";
 
 interface Params {
     searchParams: Promise<{
@@ -35,5 +36,11 @@ const IssuesPage = async ({ searchParams }: Params) => {
 };
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+    title: "Issue Tracker - Issue List",
+    description:
+        "List of all current issues. Sort by date, title, or status. Create New Issue. Filter by status. Issues page.",
+};
 
 export default IssuesPage;

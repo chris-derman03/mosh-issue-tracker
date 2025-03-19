@@ -1,6 +1,7 @@
 import React from "react";
 import IssueForm from "../_components/IssueForm";
 import RouteButton from "@/app/components/RouteButton";
+import { Metadata } from "next";
 
 const NewIssuePage = async () => {
     return (
@@ -18,6 +19,12 @@ const NewIssuePage = async () => {
             </div>
         </div>
     );
+};
+
+export const metadata: Metadata = {
+    title: "Issue Tracker - Create New Issue",
+    description:
+        "Create a new issue. Default status open with no assigned user. Type in fields for a new issue.",
 };
 
 export default NewIssuePage;

@@ -2,12 +2,13 @@ import React from "react";
 import IssueForm from "../../_components/IssueForm";
 import RouteButton from "@/app/components/RouteButton";
 import { prisma } from "@/prisma/client";
+import { Metadata } from "next";
 
-const EditIssuePage = async ({
-    params,
-}: {
+interface Params {
     params: Promise<{ id: string }>;
-}) => {
+}
+
+const EditIssuePage = async ({ params }: Params) => {
     const { id } = await params;
     const issue = await prisma.issue.findUnique({
         where: { id: id },
@@ -28,6 +29,12 @@ const EditIssuePage = async ({
             </div>
         </div>
     );
+};
+
+export const metadata: Metadata = {
+    title: "Issue Tracker - Edit Issue",
+    description:
+        "Edit the title or description of an issue. Edit issue. Modify issue. Change issue.",
 };
 
 export default EditIssuePage;

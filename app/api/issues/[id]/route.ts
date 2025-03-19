@@ -9,7 +9,7 @@ export async function PATCH(
     request: NextRequest, 
     {params}: {params: Promise<{id: string}>}) 
 {
-    // Only authenticated users can make patches
+    // Only signed in Users
     const session = await getServerSession(authOptions);
     if (!session)
         return NextResponse.json({error: "You are not an authenticated user."}, {status: 401});
@@ -56,21 +56,22 @@ export async function DELETE(
     request: NextRequest, 
     {params}: {params: Promise<{id: string}>}) 
 {
+    // Only signed in Users
     const session = await getServerSession(authOptions);
     if (!session)
         return NextResponse.json({error: "You are not an authenticated user."}, {status: 401});
     
-    const { id } = await params;
+    const deletingIssueId = await params.then(res => res.id);
 
+    // Does the issue exist
     const issue = await prisma.issue.findUnique({
-        where: {id: id}
+        where: {id: deletingIssueId}
     })
-
     if (!issue)
         return NextResponse.json({error: 'Invalid Issue'}, {status: 404})
 
     await prisma.issue.delete({
-        where: {id: id}
+        where: {id: deletingIssueId}
     });
 
     return NextResponse.json({});

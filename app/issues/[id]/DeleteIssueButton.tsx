@@ -1,10 +1,16 @@
 "use client";
 import { useState } from "react";
 import { AlertDialog, Button, Spinner } from "@radix-ui/themes";
-import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { FaCircleExclamation } from "react-icons/fa6";
+
+import dynamic from "next/dynamic";
+const FaRegTrashAlt = dynamic(() =>
+    import("react-icons/fa").then((mod) => mod.FaRegTrashAlt)
+);
+const FaCircleExclamation = dynamic(() =>
+    import("react-icons/fa6").then((mod) => mod.FaCircleExclamation)
+);
 
 const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
     const [isDialog, setDialog] = useState(false);
