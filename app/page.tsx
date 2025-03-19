@@ -1,4 +1,4 @@
-import { Card } from "@radix-ui/themes";
+import { Card, Grid } from "@radix-ui/themes";
 import LatestIssues from "./LatestIssues";
 import IssueSummary from "./IssueSummary";
 import { prisma } from "@/prisma/client";
@@ -12,23 +12,42 @@ export default async function Home() {
     const closed = await prisma.issue.count({ where: { status: "CLOSED" } });
 
     return (
-        <div className="w-full flex justify-center my-20">
-            <Card className="THEMED">
-                <div className="flex flex-col gap-7">
-                    <p className="THEMED THEMED-text1">Latest Issues</p>
-                    <LatestIssues />
-                    <IssueSummary
-                        open={open}
-                        inProgress={inProgress}
-                        closed={closed}
-                    />
-                    <IssueChart
-                        open={open}
-                        inProgress={inProgress}
-                        closed={closed}
-                    />
-                </div>
-            </Card>
-        </div>
+        <Grid columns={{ initial: "1", md: "2" }} className="my-20" gap="5">
+            <div className="flex flex-col gap-5">
+                <IssueSummary
+                    open={open}
+                    inProgress={inProgress}
+                    closed={closed}
+                />
+                <IssueChart
+                    open={open}
+                    inProgress={inProgress}
+                    closed={closed}
+                />
+            </div>
+            <div className="flex flex-col justify-between">
+                <p className="THEMED THEMED-text1">Latest Issues</p>
+                <LatestIssues />
+            </div>
+        </Grid>
+
+        // <div className="w-full flex justify-center my-20">
+        //     <Card className="THEMED">
+        //         <div className="flex flex-col gap-7">
+        //             <p className="THEMED THEMED-text1">Latest Issues</p>
+        //             <LatestIssues />
+        //             <IssueSummary
+        //                 open={open}
+        //                 inProgress={inProgress}
+        //                 closed={closed}
+        //             />
+        //             <IssueChart
+        //                 open={open}
+        //                 inProgress={inProgress}
+        //                 closed={closed}
+        //             />
+        //         </div>
+        //     </Card>
+        // </div>
     );
 }
