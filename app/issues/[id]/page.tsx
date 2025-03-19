@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cache } from "react";
 import { prisma } from "@/prisma/client";
 import { notFound } from "next/navigation";
 import StatusBadge from "@/app/components/StatusBadge";
@@ -7,18 +7,19 @@ import DeleteIssueButton from "./DeleteIssueButton";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
 import AssigneeSelect from "./AssigneeSelect";
-import { Metadata } from "next";
 
 interface Params {
     params: Promise<{ id: string }>;
 }
 
+const fetchIssue = cache((issueId: string) =>
+    prisma.issue.findUnique({ where: { id: issueId } })
+);
+
 const IssueDetailPage = async ({ params }: Params) => {
     const session = await getServerSession(authOptions);
     const { id } = await params;
-    const issue = await prisma.issue.findUnique({
-        where: { id: id },
-    });
+    const issue = await fetchIssue(id);
 
     if (!issue) notFound();
 
@@ -61,7 +62,7 @@ const IssueDetailPage = async ({ params }: Params) => {
 
 export async function generateMetadata({ params }: Params) {
     const { id } = await params;
-    const issue = await prisma.issue.findUnique({ where: { id: id } });
+    const issue = await fetchIssue(id);
 
     return {
         title: `${issue?.title}`,
